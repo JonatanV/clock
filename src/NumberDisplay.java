@@ -1,4 +1,4 @@
-public class NumberDisplay extends Clock{
+public class NumberDisplay {
     private int limit;
     private int value;
 
@@ -14,7 +14,7 @@ public class NumberDisplay extends Clock{
     public void setValue(int newValue) {
         if(newValue >limit && newValue < 0){
 
-        }else {newValue = value;}
+        }else {value = newValue;}
     }
     public String getDisplayValue(){
         String displayValue = Integer.toString(value);

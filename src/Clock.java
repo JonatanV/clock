@@ -2,10 +2,12 @@ public class Clock {
     private String displayString;
     private NumberDisplay hours;
     private NumberDisplay minutes;
+    int minLimit = 60;
+    int houLimit = 24;
 
     public Clock() {
-        this.hours = new NumberDisplay(24);
-        this.minutes = new NumberDisplay(60);
+        this.hours = new NumberDisplay(houLimit);
+        this.minutes = new NumberDisplay(minLimit);
     }
     public Clock(int hours, int minutes){
         this();
@@ -14,6 +16,9 @@ public class Clock {
     }
     public void timeTick(){
         minutes.increment();
+        if (minutes.getValue() == 0){
+            hours.increment();
+        }
     }
     public void setTime(int hours, int minutes){
         this.hours.setValue(hours);
@@ -24,10 +29,14 @@ public class Clock {
         return displayString;
     }
     private void updateDisplay(){
-        displayString = hours.getDisplayValue() +';'+ minutes.getDisplayValue();
+        displayString = hours.getDisplayValue() +':'+ minutes.getDisplayValue();
     }
 
     public static void main(String[] args) {
+        Clock isseRolex = new Clock();
+        isseRolex.setTime(8,59);
+        isseRolex.timeTick();
+        isseRolex.updateDisplay();
+        System.out.println(isseRolex.getTime());
     }
-
 }
